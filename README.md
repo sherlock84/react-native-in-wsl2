@@ -34,6 +34,7 @@ adb -a nodaemon server start
 ```powershell
 wsl-react-native-port-forwarding.ps1
 ```
+
 If you want to get update from Metro bundler from WSL2 (only for JavaScript changes) on your devices, you may want to run the script with a parameter indicating your network interface name where your device and your development computer can see each other. For example, in my case, I am using my Wi-Fi network so I will run
 
 ```powershell
@@ -48,14 +49,20 @@ With that configuration, now I can get JavaScript bundle update from Metro bundl
 emulator.exe -avd <instance name>
 ```
 
-3. In WSL2, connect to the Android emulator by running the following command. You can run `cat /etc/resolv.conf` to see what is the current WSL2 Windows host IP. `5555` should be the default ADB port of the Android emulator. If not please check its debug log to find the correct one.
+4. In WSL2, connect to the Android emulator by running the following command. You can run `cat /etc/resolv.conf` to see what is the current WSL2 Windows host IP. `5555` should be the default ADB port of the Android emulator. If not please check its debug log to find the correct one.
 
 ```bash
 adb connect <WSL2 Windows host IP>:5555
 ```
 
-4. Verify by running `adb devices` from WSL2 to see the Android emulator instance connected.
-5. Now you can work as usually with your React Native project in WSL2 along with Android Studio installed as well.
+5. Verify by running `adb devices` from WSL2 to see the Android emulator instance connected.
+6. Start the Metro bundler.
+  
+```bash
+yarn start
+```
+
+8. Now you can work as usually with your React Native project in WSL2 along with Android Studio installed as well.
 
 **NOTE** The PowerShell script uses a command that is specific to Ubuntu distro to find the current IP of the WSL2 instance. If you are using a different distro, you can replace it with whatever suitable.
 
